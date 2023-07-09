@@ -9,7 +9,7 @@ export default function AddNote() {
 
   const [noteForm, setNoteForm] = useState({
     title: '',
-    body: ''
+    content: ''
   })
 
   function handleChange(evt) {
@@ -20,12 +20,12 @@ export default function AddNote() {
     console.log('submit')
     evt.preventDefault();
     const title = evt.target.title.value
-    const body = evt.target.body.value;
+    const content = evt.target.content.value;
     const currentDate = new Date();
 
     const formData = {
       title: title,
-      body: body,
+      content: content,
       date: currentDate
     }
 
@@ -41,7 +41,7 @@ export default function AddNote() {
         <input class="input is-link" type="text" placeholder="Title" name="title" onChange={handleChange}></input>
         <br/>
         <br/>
-        <textarea class="textarea is-link" placeholder="Start writing..." name="body" onChange={handleChange}></textarea>
+        <textarea class="textarea is-link" placeholder="Start writing..." name="content" onChange={handleChange}></textarea>
         <button type="submit" class="button is-link is-light">Add</button>
       </form>
     </>

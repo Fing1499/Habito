@@ -1,11 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const notesCtrl = require('../../controllers/api/notes');
+const moodCtrl = require('../../controllers/api/moods');
 const ensureLoggedIn = require('../../config/ensureLoggedIn');
 
-router.get('/get-all', notesCtrl.index);
-
-router.post('/add-note', notesCtrl.addNote);
+router.post('/add-mood', moodCtrl.addMood);
 
 
 module.exports = router;
