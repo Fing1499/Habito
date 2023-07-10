@@ -8,9 +8,9 @@ const Note = require('./note');
 const SALT_ROUNDS = 6;
 
 const userSchema = new Schema({
-  habit: [{ type: Schema.Types.ObjectId, ref: 'Habit' }],
-  mood: [{ type: Schema.Types.ObjectId, ref: 'Mood' }],
-  note: [{ type: Schema.Types.ObjectId, ref: 'Note' }],
+  habit: [Habit.schema],
+  mood: [Mood.schema],
+  note: [Note.schema],
   name: {type: String, required: true},
   email: {
     type: String,

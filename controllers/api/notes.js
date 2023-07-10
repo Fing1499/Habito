@@ -10,10 +10,11 @@ module.exports = {
 async function addNote(req, res) {
   try {
     console.log(req.user._id)
-    const user = await User.findById(req.user._id).populate('note');
-    const newNote = new Note(req.body);
-    user.note.push(newNote);
-    await Promise.all([newNote.save(), user.save()]);
+    const user = await User.findById(req.user._id)
+    const newNote = new Note(req.body)
+    await newNote.save()
+    user.note.push(newNote)
+    user.save()
   } catch(err) {
     console.log(err);
   }
@@ -22,10 +23,8 @@ async function addNote(req, res) {
 async function index(req, res) {
   try {
     const user = await User.findById(req.user._id);
-    const noteIds = user.note.map(note => note._id);
-    const allNotes = await Promise.all(noteIds.map(n => Note.findById(n)))
-    console.log(allNotes);
-    res.json(allNotes); 
+    const allNotes = user.note
+    res.json(allNotes)
   } catch (err) {
     console.log(err);
   }

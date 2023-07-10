@@ -7,11 +7,14 @@ module.exports = {
 
 async function addHabit(req, res) {
   try {
-    console.log(req.user._id)
-    const user = await User.findById(req.user._id).populate('habit');
-    const newHabit = new Habit(req.body);
-    user.habit.push(newHabit);
-    await Promise.all([newHabit.save(), user.save()]);
+    const userId = req.user._id;
+    console.log(userId)
+    const user = await User.findById(userId)
+    const newHabit = new Habit(req.body)
+    await newHabit.save()
+    user.habit.push(newHabit)
+    await user.save()
+    console.log(newHabit);
   } catch(err) {
     console.log(err);
   }
