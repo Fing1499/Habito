@@ -9,6 +9,7 @@ import DetailsPage from '../Details/DetailsPage';
 import Notes from '../Notes/Notes';
 import AddHabit from '../AddHabit/AddHabit';
 import AddNote from '../Notes/AddNote';
+import NotesDetails from '../Notes/NotesDetails';
 
 export default function App() {
   const [user, setUser] = useState(getUser());
@@ -25,6 +26,7 @@ export default function App() {
               <Route path="/notes" element={<Notes />} />
               <Route path="/add-habit" element={<AddHabit />} />
               <Route path="/add-note" element={<AddNote />} />
+              <Route path="/notes/:id" element={<NotesDetails />} />
             </Routes>
           </>
           :

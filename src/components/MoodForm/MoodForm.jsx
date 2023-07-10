@@ -3,7 +3,7 @@ import * as moodAPI from '../../utilities/mood-api';
 export default function MoodForm() {
   function handleSubmit(evt, mood) {
     evt.preventDefault();
-    const currentDate = new Date();
+    const currentDate = new Date().toLocaleDateString('en-GB');
 
     const formData = {
       mood: mood,

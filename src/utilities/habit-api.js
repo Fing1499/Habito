@@ -7,3 +7,11 @@ export async function addHabit(formData) {
   console.log(formData)
   return sendRequest(`${BASE_URL}/add-habit`, 'POST', formData)
 }
+
+export async function getAll() {
+  return sendRequest(BASE_URL)
+}
+
+export async function completeHabit(formData) {
+  return sendRequest(`${BASE_URL}/complete-habit`, 'POST', formData)
+}

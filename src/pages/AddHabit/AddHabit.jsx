@@ -25,7 +25,7 @@ export default function AddHabit() {
     evt.preventDefault();
     const habit = evt.target.habit.value
     const goal = evt.target.goal.value;
-    const currentDate = new Date();
+    const currentDate = new Date().toLocaleDateString('en-GB');
 
     const formData = {
       habit: habit,

@@ -11,3 +11,18 @@ export async function addHabit(formData) {
 export async function getAll() {
   return sendRequest(`${BASE_URL}/get-all`);
 }
+
+export async function getNoteById(id) {
+  try {
+    const response = await fetch(`/api/notes/${id}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    throw new Error('Failed to fetch note');
+  }
+}

@@ -7,5 +7,7 @@ router.get('/get-all', notesCtrl.index);
 
 router.post('/add-note', notesCtrl.addNote);
 
+router.get('/:id', notesCtrl.getOne);
+
 
 module.exports = router;

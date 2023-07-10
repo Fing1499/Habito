@@ -21,7 +21,7 @@ export default function AddNote() {
     evt.preventDefault();
     const title = evt.target.title.value
     const content = evt.target.content.value;
-    const currentDate = new Date();
+    const currentDate = new Date().toLocaleDateString('en-GB');
 
     const formData = {
       title: title,

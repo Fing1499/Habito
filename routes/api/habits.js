@@ -5,5 +5,8 @@ const ensureLoggedIn = require('../../config/ensureLoggedIn');
 
 router.post('/add-habit', habitsCtrl.addHabit);
 
+router.post('/complete-habit', habitsCtrl.completeHabit)
+
+router.get('/', habitsCtrl.index);
 
 module.exports = router;
