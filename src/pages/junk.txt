@@ -1,0 +1,79 @@
+HABIT CHECKED form
+
+import { useState, useEffect } from "react"
+import * as habitAPI from '../../utilities/habit-api'
+import HabitListItem from "./HabitListItem"
+
+
+export default function HabitCheckedForm() {
+  
+  const [habits, setHabits] = useState([])
+
+  useEffect(function() {
+    async function getAll() {
+      const sendReq = await habitAPI.getAll()
+      const eachHabit = sendReq.map((habit, idx) => <HabitListItem habit={habit} key={idx} />)
+      console.log(eachHabit)   
+      setHabits(eachHabit)
+    }
+    getAll();
+  }, [])
+
+  
+
+
+  return(
+    <>
+      <ul>
+        {habits}
+      </ul>
+    </>
+  )
+}
+
+--------------- HABIT LIST ITEM --------------
+
+import * as habitAPI from '../../utilities/habit-api';
+import { useState, useEffect } from 'react';
+
+export default function HabitListItem({ habit }) {
+
+  const habitStyle = {
+    border: `1px solid ${habit.color}`
+  }
+
+  const [completedToday, setCompletedToday] = useState(habit.completed_today);
+
+  useEffect(function() {
+    setCompletedToday(habit.completed_today)
+  }, [habit.completed_today])
+
+  function handleSubmit(evt) {
+    evt.preventDefault();
+    const currentDate = new Date().toLocaleDateString('en-GB');
+    const updatedCompletedToday = !completedToday;
+
+    const formData = {
+      dates_completed: currentDate,
+      _id: habit._id,
+      completed_today: updatedCompletedToday
+    }
+    habitAPI.completeHabit(formData)
+    setCompletedToday(updatedCompletedToday)
+  }
+
+  return(
+    <>
+    <li style={habitStyle}>
+      <form>
+        <h3>{habit.habit} | {habit._id} | {habit.completed_today.toString()}</h3>
+        { completedToday ?
+          <button onClick={(evt) => handleSubmit(evt, true)} value="true">true</button>
+        :
+          <button onClick={(evt) => handleSubmit(evt, false)} value="false">false</button>
+        }
+      </form>
+    </li>
+    </>
+  )
+}

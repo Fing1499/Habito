@@ -11,6 +11,7 @@ const habitSchema = new Schema({
   dates_completed: { type: Array, default: [] },
   current_date: { type: Date },
   multiplier: { type: Number, default: 1 },
+  previous_multiplier: { type: Number, default: 1 }, 
   completed_today: { type: Boolean, default: false },
   color: { type: String, required: true },
   goal: { type: Number, required: true },

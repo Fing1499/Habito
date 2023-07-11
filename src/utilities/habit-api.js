@@ -15,3 +15,7 @@ export async function getAll() {
 export async function completeHabit(formData) {
   return sendRequest(`${BASE_URL}/complete-habit`, 'POST', formData)
 }
+
+export async function getCheckedValues() {
+  return sendRequest(`${BASE_URL}/check-value`)
+}
