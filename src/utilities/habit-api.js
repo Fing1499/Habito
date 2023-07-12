@@ -9,7 +9,7 @@ export async function addHabit(formData) {
 }
 
 export async function getAll() {
-  return sendRequest(BASE_URL)
+  return sendRequest(BASE_URL, 'POST')
 }
 
 export async function completeHabit(formData) {
@@ -18,4 +18,8 @@ export async function completeHabit(formData) {
 
 export async function getCheckedValues() {
   return sendRequest(`${BASE_URL}/check-value`)
+}
+
+export async function getChartData() {
+  return sendRequest(`${BASE_URL}/get-chart-data`)
 }

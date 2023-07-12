@@ -56,10 +56,10 @@ export default function HabitCheckedForm() {
           <li key={habit._id} style={{ border: `1px solid ${habit.color}` }}>
             <form>
               <h3>{habit.habit} | {habit._id} | {habit.completed_today.toString()} | {habit.multiplier}</h3>
-              {habit.completed_today || habit.dates_completed[-1] === new Date().toLocaleDateString('en-GB') ? (
-                <button onClick={handleSubmit} value={habit._id}>true</button>
+              { !habit.completed_today || !habit.dates_completed.includes(new Date().toLocaleDateString('en-GB')) ? (
+                <button onClick={handleSubmit} value={habit._id}>Not Done</button>
               ) : (
-                <button onClick={handleSubmit} value={habit._id}>false</button>
+                <button onClick={handleSubmit} value={habit._id}>Done</button>
               )}
             </form>
           </li>

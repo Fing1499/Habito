@@ -8,6 +8,7 @@ const habitSchema = new Schema({
   habit: { type: String, required: true },
   created_at: { type: String },
   amount_completed: { type: Number, default: 0 },
+  previous_amount: { type: Number, default: 0 },
   dates_completed: { type: Array, default: [] },
   current_date: { type: Date },
   multiplier: { type: Number, default: 1 },

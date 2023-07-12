@@ -7,7 +7,8 @@ router.post('/add-habit', habitsCtrl.addHabit);
 
 router.post('/complete-habit', habitsCtrl.completeHabit);
 
+router.post('/', habitsCtrl.index);
 
-router.get('/', habitsCtrl.index);
+router.get('/get-chart-data', habitsCtrl.getChartData);
 
 module.exports = router;
