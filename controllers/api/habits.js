@@ -1,19 +1,80 @@
 const User = require('../../models/user');
 const Habit = require('../../models/habit');
+const chartData = require('../../models/chartdata')
 const mongoose = require('mongoose');
-const habit = require('../../models/habit');
+
 
 module.exports = {
   addHabit,
   index,
   completeHabit,
-  getChartData
+  getChartData,
+  deleteHabit,
+  addChartData,
+  getAreaChartData
+}
+
+async function getAreaChartData(req, res) {
+  try {
+    const user = await User.findById(req.user._id)
+    console.log(user.chart_data)
+    await res.json(user.chart_data)
+  } catch (err) {
+    console.log(err)
+  }
+}
+
+async function addChartData(req, res) {
+  try {
+    const user = await User.findById(req.user._id)
+    console.log(user.chart_data)
+    console.log(req.body.habit.dates_completed)
+    if (!user.chart_data.find(data => data.date === req.body.habit.dates_completed)) {
+      console.log('if')
+      const newData = new chartData({
+        date: req.body.habit.dates_completed,
+        habits_completed: 1
+      })
+      user.chart_data.push(newData)
+      console.log(user.chart_data)
+    } else {
+      if(req.body.habit.completed_today) {
+        const dataToUpdate = user.chart_data.findIndex(data => data.date === req.body.habit.dates_completed)
+        console.log('minus')
+        user.chart_data[dataToUpdate].habits_completed -= 1
+        console.log(user.chart_data[dataToUpdate].habits_completed)
+      } else if(!req.body.habit.completed_today) {
+        console.log('plus')
+        const dataToUpdate = user.chart_data.findIndex(data => data.date === req.body.habit.dates_completed)
+        user.chart_data[dataToUpdate].habits_completed += 1
+        console.log(user.chart_data[dataToUpdate].habits_completed)
+      }
+    }
+    await user.save()
+    res.json('Chart Data Updated')
+  } catch (err) {
+    console.log(err)
+  }
+}
+
+async function deleteHabit(req, res) {
+  const user = await User.findById(req.user._id)
+  const habitId = req.body.habitId
+  const habitToDelete = user.habit.find(habit => habit._id.equals(habitId))
+  const index = user.habit.indexOf(habitToDelete)
+  user.habit.splice(index, 1)
+  await user.save();
+  res.json()
 }
 
 async function getChartData(req, res) {
-  const user = await User.findById(req.user._id)
-  const habits = await user.habit
-  res.json(habits)
+  try {
+    const user = await User.findById(req.user._id)
+    const habits = await user.habit
+    res.json(habits)
+  } catch(err) {
+    console.log(err)
+  }
 }
 
 
@@ -22,10 +83,9 @@ async function completeHabit(req, res) {
   try {
     const user = await User.findById(req.user._id)
     const habits = await user.habit
-
     const objId = mongoose.Types.ObjectId(req.body.habit._id)
     const habit = await habits.find(habit => habit._id.equals(objId))
-    console.log('REQ.BODY:', req.body.habit)
+    // console.log('REQ.BODY:', req.body.habit.dates_completed)
     habit.completed_today = req.body.habit.completed_today
 
 
@@ -34,15 +94,19 @@ async function completeHabit(req, res) {
       await habit.dates_completed.push(req.body.habit.dates_completed)
       habit.multiplier = habit.multiplier + (habit.multiplier * 0.01)
       habit.amount_completed += 1
+      await habit.multiplier_day_by_day.push(habit.multiplier);
+
+
     } else {
       await habit.dates_completed.pop(req.body.habit.dates_completed)
       habit.multiplier = habit.previous_multiplier
       habit.amount_completed = habit.previous_amount
+      await habit.multiplier_day_by_day.pop()
     }
 
-    console.log('HABIT', habit)
+    // console.log('HABIT', habit)
     await user.save()
-    res.end();
+    await res.json(habit);
   } catch (err) {
     console.log(err);
   }

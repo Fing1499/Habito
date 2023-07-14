@@ -77,3 +77,30 @@ export default function HabitListItem({ habit }) {
     </>
   )
 }
+
+
+--------------- LineChart 
+
+
+  const renderLineChart = (
+    <LineChart width={600} height={300} data={data}>
+    <CartesianGrid stroke="" />
+    <XAxis dataKey="date" />
+    <YAxis domain={[0.9, 1.05]} />
+
+    {data.map((habit) => (
+      <Line
+        key={habit.habit}
+        type="monotone"
+        data={habit.dates_completed.map((date) => ({
+          name: habit.habit,
+          multiplier: habit.multiplier,
+          date: date,
+          color: habit.color,
+        }))}
+        dataKey="multiplier"
+        stroke={habit.color}
+      />
+    ))}
+  </LineChart>
+  );

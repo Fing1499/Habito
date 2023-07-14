@@ -10,10 +10,19 @@ async function addMood(req, res) {
     console.log(req.user._id)
     console.log('req!!:', req.body)
     const user = await User.findById(req.user._id)
-    const newMood = new Mood(req.body)
-    await newMood.save()
-    user.mood.push(newMood)
+    if (user.mood.some(mood => mood.current_date === req.body.current_date)) {
+      console.log('if')
+      const moodIndex = await user.mood.findIndex((mood) => mood.current_date === req.body.current_date)
+      user.mood[moodIndex] = req.body
+    } else {
+      console.log('else')
+      const newMood = new Mood(req.body)
+      await newMood.save()
+      user.mood.push(newMood)
+    }
+    console.log(user.mood)
     await user.save();
+    res.json();
   } catch(err) {
     console.log(err);
   }

@@ -23,3 +23,15 @@ export async function getCheckedValues() {
 export async function getChartData() {
   return sendRequest(`${BASE_URL}/get-chart-data`)
 }
+
+export async function sendChartData(formData) {
+  return sendRequest(`${BASE_URL}/send-chart-data`, 'POST', formData)
+}
+
+export async function deleteHabit(formData) {
+  return sendRequest(`${BASE_URL}/delete-habit`, 'POST', formData)
+}
+
+export async function getAreaChartData() {
+  return sendRequest(`${BASE_URL}/get-area-chart-data`)
+}

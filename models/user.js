@@ -4,6 +4,7 @@ const bcrypt = require('bcrypt');
 const Habit = require('./habit');
 const Mood = require('./mood');
 const Note = require('./note');
+const Chartdata = require('./chartdata');
 
 const SALT_ROUNDS = 6;
 
@@ -11,6 +12,7 @@ const userSchema = new Schema({
   habit: [Habit.schema],
   mood: [Mood.schema],
   note: [Note.schema],
+  chart_data: [Chartdata.schema],
   name: {type: String, required: true},
   email: {
     type: String,

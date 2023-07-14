@@ -10,6 +10,7 @@ const habitSchema = new Schema({
   amount_completed: { type: Number, default: 0 },
   previous_amount: { type: Number, default: 0 },
   dates_completed: { type: Array, default: [] },
+  multiplier_day_by_day: { type: Array, default: [] },
   current_date: { type: Date },
   multiplier: { type: Number, default: 1 },
   previous_multiplier: { type: Number, default: 1 }, 

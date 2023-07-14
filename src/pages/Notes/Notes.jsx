@@ -19,7 +19,7 @@ export default function Notes() {
     getNotes();
   }, [])
 
-
+  
   return(
     <>
       <h1>Notes</h1>

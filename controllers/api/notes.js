@@ -17,6 +17,7 @@ async function addNote(req, res) {
     await newNote.save()
     user.note.push(newNote)
     user.save()
+    res.json()
   } catch(err) {
     console.log(err);
   }

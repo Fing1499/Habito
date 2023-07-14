@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import * as habitAPI from '../../utilities/habit-api';
 
+
 export default function HabitCheckedForm() {
   const [habits, setHabits] = useState([]);
 
@@ -24,7 +25,8 @@ export default function HabitCheckedForm() {
     getAll();
   }, []);
 
-  function handleSubmit(evt) {
+  async function handleSubmit(evt) {
+    try {
     evt.preventDefault();
     const currentDate = new Date().toLocaleDateString('en-GB');
     const habitId = evt.target.value;
@@ -45,8 +47,24 @@ export default function HabitCheckedForm() {
       habit: clickedHabit,
     };
 
-    habitAPI.completeHabit(formData);
+    await habitAPI.completeHabit(formData);
+    await habitAPI.sendChartData(formData);
     setHabits(updatedHabits);
+    } catch(err) {
+      console.log(err)
+    }
+  }
+
+
+  function handleDelete(evt) {
+    evt.preventDefault()
+    const habitId = evt.target.value;
+    
+    const formData = {
+      habitId: habitId
+    }
+
+    habitAPI.deleteHabit(formData);
   }
 
   return (
@@ -61,6 +79,7 @@ export default function HabitCheckedForm() {
               ) : (
                 <button onClick={handleSubmit} value={habit._id}>Done</button>
               )}
+              <button onClick={handleDelete} value={habit._id}>Delete</button>
             </form>
           </li>
         ))}

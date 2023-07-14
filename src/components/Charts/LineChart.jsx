@@ -1,56 +1,33 @@
 import { LineChart, Line, CartesianGrid, XAxis, YAxis } from 'recharts';
-import { useState, useEffect } from 'react';
-import * as habitAPI from '../../utilities/habit-api'
+// import { useState, useEffect } from 'react';
 
 
-export default function MainLineChart() {
+
+export default function MainLineChart({ chartData }) {
  
-  // {name: 'Page A', uv: 400, pv: 2400, amt: 2400},
-  const [chartData, setChartData] = useState([])
 
-
-  useEffect(function () {
-    async function getChartData() {
-      const response = await habitAPI.getChartData();
-      const eachHabit = response.map((habit) => ({
-        habit: habit.habit,
-        multiplier: habit.multiplier,
-        dates_completed: habit.dates_completed,
-        color: habit.color,
-      }));
-      console.log('EACHHABIT', eachHabit);
-      setChartData(eachHabit);
-    }
-    getChartData();
-  }, []);
-  const data = chartData
-
-
+  const data = [
+    {dates_completed: "04/07/2023", testing: 1, Gym: 1, color: '#ff8900'},      
+    {dates_completed: "05/07/2023", testing: 1.01, Gym: 1.01, color: '#ff8900'},      
+    {dates_completed: "06/07/2023", testing: 1.0201, Gym: 1.0201, color: '#ff8900'},      
+    {dates_completed: "07/07/2023", testing: 1.030301, color: '#ff8900'},      
+    {dates_completed: "08/07/2023", testing: 1.04060401, color: '#ff8900'},      
+    {dates_completed: "09/07/2023", testing: 1.0510100501, color: '#ff8900'},      
+    {dates_completed: "10/07/2023", testing: 1.061520150601, color: '#ff8900'},
+    {dates_completed: "04/07/2023",  color: '#ff8900'},      
+    {dates_completed: "05/07/2023",  color: '#ff8900'},      
+    {dates_completed: "06/07/2023",  color: '#ff8900'}
+  ]
   const renderLineChart = (
     <LineChart width={600} height={300} data={data}>
-    <CartesianGrid stroke="" />
-    <XAxis dataKey="date" />
-    <YAxis domain={[0, 'auto']} />
-
-    {data.map((habit) => (
-      <Line
-        key={habit.habit}
-        type="monotone"
-        data={habit.dates_completed.map((date) => ({
-          name: habit.habit,
-          multiplier: habit.multiplier,
-          date: date,
-          color: habit.color,
-        }))}
-        dataKey="multiplier"
-        stroke={habit.color}
-      />
-    ))}
-  </LineChart>
+      <Line type="monotone" dataKey="testing" stroke="#ff8900" />
+      <Line type="monotone" dataKey="Gym" stroke="blue" />
+      <CartesianGrid stroke="#ccc" />
+      <XAxis dataKey="dates_completed" />
+      <YAxis />
+    </LineChart>
   );
-
-
-
+  
   return(
     <>
       <h1>LineChart</h1>

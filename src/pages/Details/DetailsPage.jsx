@@ -1,8 +1,10 @@
-import { useState } from 'react';
-
+import { useState, useEffect } from 'react';
+import * as habitAPI from '../../utilities/habit-api'
 import MainPieChart from '../../components/Charts/PieChart';
-import BarChart from '../../components/Charts/BarChart';
+import MainBarChart from '../../components/Charts/BarChart';
 import MainLineChart from '../../components/Charts/LineChart';
+import MainRadarChart from '../../components/Charts/RadarChart';
+import MainAreaChart from '../../components/Charts/AreaChart';
 
 
 export default function DetailsPage() {
@@ -12,7 +14,24 @@ export default function DetailsPage() {
     setActiveChart(evt.target.value)
   }
 
+  const [chartData, setChartData] = useState([])
 
+
+  useEffect(function () {
+    async function getChartData() {
+      const response = await habitAPI.getChartData();
+      const eachHabit = response.map((habit) => ({
+        habit: habit.habit,
+        multiplier: habit.multiplier,
+        dates_completed: habit.dates_completed,
+        color: habit.color,
+        amount_completed: habit.amount_completed
+      }));
+      console.log('EACHHABIT', eachHabit);
+      setChartData(eachHabit);
+    }
+    getChartData();
+  }, []);
 
 
   return(
@@ -21,14 +40,22 @@ export default function DetailsPage() {
     <button value="line" onClick={handleChange}>Line Chart</button>
     <button value="bar" onClick={handleChange}>Bar Chart</button>
     <button value="pie" onClick={handleChange}>Pie Chart</button>
+    <button value="radar" onClick={handleChange}>Radar Chart</button>
+    <button value="area" onClick={handleChange}>Area Chart</button>
     { activeChart === 'bar' && (
-      <BarChart />
+      <MainBarChart chartData={chartData} />
     )}
     { activeChart === 'line' && (
-      <MainLineChart />
+      <MainLineChart chartData={chartData} />
     )}
     { activeChart === 'pie' && (
-      <MainPieChart />
+      <MainPieChart chartData={chartData} />
+    )}
+    { activeChart === 'radar' && (
+      <MainRadarChart chartData={chartData} />
+    )}
+    { activeChart === 'area' && (
+      <MainAreaChart chartData={chartData} />
     )}
     </>
   )
