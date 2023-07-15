@@ -148,7 +148,7 @@ async function index(req, res) {
       console.log('HERE', habit.habit, habit.completed_today)
     })
     await user.save();
-    res.json(allHabits)
+    await res.json(allHabits)
     // console.log('ALL HABITS', allHabits);
     
     console.log('tDay', tDay)

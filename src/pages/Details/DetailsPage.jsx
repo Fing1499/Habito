@@ -9,7 +9,7 @@ import MoodChart from '../../components/Charts/MoodChart';
 
 
 export default function DetailsPage() {
-  const [activeChart, setActiveChart] = useState('line')
+  const [activeChart, setActiveChart] = useState(null)
 
   function handleChange(evt) {
     setActiveChart(evt.target.value)
@@ -21,20 +21,21 @@ export default function DetailsPage() {
   useEffect(function () {
     async function getChartData() {
       const response = await habitAPI.getChartData();
-      const eachHabit = response.map((habit) => ({
+      const eachHabit = await response.map((habit) => ({
         habit: habit.habit,
         multiplier: habit.multiplier,
+        multiplier_day_by_day: habit.multiplier_day_by_day,
         dates_completed: habit.dates_completed,
         color: habit.color,
         amount_completed: habit.amount_completed
       }));
       console.log('EACHHABIT', eachHabit);
-      setChartData(eachHabit);
+      await setChartData(eachHabit);
     }
     getChartData();
   }, []);
 
-
+  console.log('chartData in DetailsPage:', chartData);
   return(
     <>
     <h1>Details Page</h1>
