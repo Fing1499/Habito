@@ -23,6 +23,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: var(--tan-4);
   height: 100vh;
+  width: 100vw;
 }
 
 code {
@@ -32,6 +33,7 @@ code {
 
 #root {
   height: 100%;
+  width: 100%;
 }
 
 .align-ctr {

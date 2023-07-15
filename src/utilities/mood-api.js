@@ -7,3 +7,7 @@ export async function addMood(formData) {
   console.log(formData)
   return sendRequest(`${BASE_URL}/add-mood`, 'POST', formData)
 }
+
+export async function getMoodData() {
+  return sendRequest(`${BASE_URL}/get-mood-data`)
+}

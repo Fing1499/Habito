@@ -5,5 +5,7 @@ const ensureLoggedIn = require('../../config/ensureLoggedIn');
 
 router.post('/add-mood', moodCtrl.addMood);
 
+router.get('/get-mood-data', moodCtrl.getMoodData);
+
 
 module.exports = router;

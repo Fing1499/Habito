@@ -6,7 +6,13 @@ export default function MainAreaChart() {
 
   const [areaChartData, setAreaChartData] = useState([])
 
-  
+  function totalHabits(areaChartData) {
+    let total = 0;
+    areaChartData.forEach(data => {
+      total = total + data.habits_completed
+    });
+    return total
+  }
 
   useEffect(function() {
     async function getACD() {
@@ -33,10 +39,10 @@ export default function MainAreaChart() {
       }}
     >
       <CartesianGrid strokeDasharray="3 3" />
-      <XAxis dataKey="date" />
+      <XAxis dataKey="date" name="Date"/>
       <YAxis />
       <Tooltip />
-      <Area type="monotone" dataKey="habits_completed" stroke="#8884d8" fill="#8884d8" />
+      <Area type="monotone" dataKey="habits_completed" name="Habits Completed" stroke="#8884d8" fill="#8884d8" />
     </AreaChart>
   </ResponsiveContainer>
   )
@@ -45,6 +51,12 @@ export default function MainAreaChart() {
     <>
     <h1>hello</h1>
       {renderAreaChart}
+      <section>
+        <h1>You Have Completed</h1>
+        <h1>{totalHabits(areaChartData)}</h1>
+        <h1>Habits Over</h1>
+        <h1>{areaChartData.length} Days!</h1>
+      </section>
     </>
   )
 }

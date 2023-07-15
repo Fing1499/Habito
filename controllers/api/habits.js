@@ -40,13 +40,13 @@ async function addChartData(req, res) {
     } else {
       if(req.body.habit.completed_today) {
         const dataToUpdate = user.chart_data.findIndex(data => data.date === req.body.habit.dates_completed)
-        console.log('minus')
-        user.chart_data[dataToUpdate].habits_completed -= 1
+        console.log('plus')
+        user.chart_data[dataToUpdate].habits_completed += 1
         console.log(user.chart_data[dataToUpdate].habits_completed)
       } else if(!req.body.habit.completed_today) {
-        console.log('plus')
+        console.log('minus')
         const dataToUpdate = user.chart_data.findIndex(data => data.date === req.body.habit.dates_completed)
-        user.chart_data[dataToUpdate].habits_completed += 1
+        user.chart_data[dataToUpdate].habits_completed -= 1
         console.log(user.chart_data[dataToUpdate].habits_completed)
       }
     }

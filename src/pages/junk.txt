@@ -104,3 +104,16 @@ export default function HabitListItem({ habit }) {
     ))}
   </LineChart>
   );
+
+
+  ----------- RENDER LINE CHART 
+
+    const renderLineChart = (
+    <LineChart width={600} height={300} data={data}>
+      <Line type="monotone" dataKey="testing" stroke="#ff8900" />
+      <Line type="monotone" dataKey="Gym" stroke="blue" />
+      <CartesianGrid stroke="#ccc" />
+      <XAxis dataKey="dates_completed" />
+      <YAxis />
+    </LineChart>
+  );

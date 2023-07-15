@@ -5,6 +5,7 @@ import MainBarChart from '../../components/Charts/BarChart';
 import MainLineChart from '../../components/Charts/LineChart';
 import MainRadarChart from '../../components/Charts/RadarChart';
 import MainAreaChart from '../../components/Charts/AreaChart';
+import MoodChart from '../../components/Charts/MoodChart';
 
 
 export default function DetailsPage() {
@@ -42,6 +43,7 @@ export default function DetailsPage() {
     <button value="pie" onClick={handleChange}>Pie Chart</button>
     <button value="radar" onClick={handleChange}>Radar Chart</button>
     <button value="area" onClick={handleChange}>Area Chart</button>
+    <button value="mood" onClick={handleChange}>Mood Chart</button>
     { activeChart === 'bar' && (
       <MainBarChart chartData={chartData} />
     )}
@@ -56,6 +58,9 @@ export default function DetailsPage() {
     )}
     { activeChart === 'area' && (
       <MainAreaChart chartData={chartData} />
+    )}
+    { activeChart === 'mood' && (
+      <MoodChart chartData={chartData} />
     )}
     </>
   )

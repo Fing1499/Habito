@@ -6,6 +6,12 @@ export default function MainRadarChart({ chartData }) {
 
   const data = chartData
 
+  function improvement(chartData) {
+    return chartData.map((data) => (
+      <p key={data.habit}>{data.habit}: You have improved {data.multiplier.toFixed(2)}x</p>
+    ))
+  }
+
   const renderRadarChart = (
     <ResponsiveContainer width="100%" height={300}>
       <RadarChart cx="50%" cy="50%" outerRadius="80%" data={data}>
@@ -20,6 +26,10 @@ export default function MainRadarChart({ chartData }) {
   return(
     <>
       {renderRadarChart}
+      <section>
+        <h1>Your Improvement!</h1>
+        {improvement(chartData)}
+      </section>
     </>
   )
 }

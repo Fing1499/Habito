@@ -2,7 +2,17 @@ const User = require('../../models/user');
 const Mood = require('../../models/mood');
 
 module.exports = {
-  addMood
+  addMood,
+  getMoodData
+}
+
+async function getMoodData(req, res) {
+  try {
+    const user = await User.findById(req.user._id)
+    res.json(user.mood) 
+  } catch (err) {
+    console.log(err)
+  }
 }
 
 async function addMood(req, res) {
