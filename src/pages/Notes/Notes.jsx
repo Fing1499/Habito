@@ -1,3 +1,4 @@
+import './Notes.css'
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import * as notesAPI from '../../utilities/notes-api';
@@ -22,11 +23,19 @@ export default function Notes() {
   
   return(
     <>
-      <h1>Notes</h1>
-      <Link to="/add-note">Add note</Link>
-      <ul>
+    <main className="notes">
+      <section className="heading">
+        <h1 className='your-notes'>Your Notes</h1>
+        <section className="notes-info">
+          <h3 className="date">{new Date().toLocaleString('en-GB').split(',')[0]}</h3>
+          <h3 className="notes-amount">{notes.length} Notes</h3>
+          <Link to="/add-note" className='add-note'>Add note</Link>
+        </section>
+      </section>
+      <ul className='notes-list'>
         {[notes]}
       </ul>
+    </main>
     </>
   )
 }

@@ -32,7 +32,7 @@ async function addMood(req, res) {
     }
     console.log(user.mood)
     await user.save();
-    res.json();
+    res.json('added mood');
   } catch(err) {
     console.log(err);
   }

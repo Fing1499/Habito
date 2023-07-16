@@ -1,6 +1,5 @@
 const User = require('../../models/user');
 const Note = require('../../models/note');
-const CircularJSON = require('circular-json');
 const mongoose = require('mongoose')
 
 module.exports = {
@@ -17,7 +16,7 @@ async function addNote(req, res) {
     await newNote.save()
     user.note.push(newNote)
     user.save()
-    res.json()
+    res.json('note added')
   } catch(err) {
     console.log(err);
   }

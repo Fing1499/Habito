@@ -1,3 +1,4 @@
+import './NavBar.css'
 import { Link } from 'react-router-dom';
 import * as userService from '../../utilities/users-service';
 
@@ -13,15 +14,13 @@ export default function NavBar({ user, setUser }) {
   return (
     <>
       <nav>
-        <Link to="/dashboard">Dashboard</Link>
+        <Link to="/dashboard"><i class="fa-solid fa-grip fa-2xl"></i></Link>
 
-        <Link to="/details">Details</Link>
+        <Link to="/details"><i class="fa-solid fa-chart-line fa-2xl"></i></Link>
 
-        <Link to="/notes">Notes</Link>
- 
-        <span>Welcome, {user.name}</span>
+        <Link to="/notes"><i class="fa-solid fa-note-sticky fa-2xl"></i></Link>
 
-        <Link to="" onClick={handleLogOut}>Log Out</Link>
+        <Link to="" onClick={handleLogOut}><i class="fa-solid fa-arrow-right-from-bracket fa-2xl"></i></Link>
       </nav>
     </>
   );

@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import './HabitCheckedForm.css'
+import { useState, useEffect } from "react";
 import * as habitAPI from '../../utilities/habit-api';
 
 
@@ -69,18 +70,18 @@ export default function HabitCheckedForm() {
 
   return (
     <>
-      <ul>
+      <ul className='habit-list'>
         {habits.map(habit => (
-          <li key={habit._id} style={{ border: `1px solid ${habit.color}` }}>
-            <form>
-              <h3>{habit.habit} | {habit._id} | {habit.completed_today.toString()} | {habit.multiplier}</h3>
+          <li  className='one-habit' key={habit._id} style={{ border: `2px solid ${habit.color}` }}>
+              <div className='habit-left'>
+                <button className='delete' onClick={handleDelete} value={habit._id}>Delete</button>
+                <h3 className='habit-name'>{habit.habit}</h3>
+              </div>
               { !habit.completed_today || !habit.dates_completed.includes(new Date().toLocaleDateString('en-GB')) ? (
-                <button onClick={handleSubmit} value={habit._id}>Not Done</button>
+                <button className='not-done' onClick={handleSubmit} value={habit._id}>✕</button>
               ) : (
-                <button onClick={handleSubmit} value={habit._id}>Done</button>
+                <button className='done' onClick={handleSubmit} value={habit._id}>✓</button>
               )}
-              <button onClick={handleDelete} value={habit._id}>Delete</button>
-            </form>
           </li>
         ))}
       </ul>

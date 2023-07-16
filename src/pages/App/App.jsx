@@ -21,7 +21,7 @@ export default function App() {
             <NavBar user={user} setUser={setUser} />
             <Routes>
               {/* Route components in here */}
-              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/dashboard" element={<Dashboard user={user} />} />
               <Route path="/details" element={<DetailsPage />} />
               <Route path="/notes" element={<Notes />} />
               <Route path="/add-habit" element={<AddHabit />} />
