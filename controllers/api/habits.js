@@ -18,8 +18,10 @@ module.exports = {
 async function starHabit(req, res) {
   try {
     const user = await User.findById(req.user._id)
+    console.log(req.body)
     const habitId = req.body.habitId
     const habitToStar = user.habit.find(habit => habit._id.equals(habitId))
+    console.log(habitToStar)
     habitToStar.starred = !habitToStar.starred
     await user.save()
     res.json('habit star value changed')

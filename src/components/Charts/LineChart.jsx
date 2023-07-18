@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import SpecificHabitLineChart from './SpecifcHabitLineChart';
 
 export default function MainLineChart({ chartData }) {
@@ -7,10 +7,6 @@ export default function MainLineChart({ chartData }) {
   const [selectedGraph, setSelectedGraph] = useState(chartData[0]);
   console.log('selectedGraph:', selectedGraph);
   
-  // useEffect(function() {
-  //   setSelectedGraph(chartData[0])
-  // }, [chartData])
-  // console.log('selectedGraph2:', selectedGraph);
 
   function displayButtons(chartData) {
     return chartData.map((data, idx) => (

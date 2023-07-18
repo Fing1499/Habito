@@ -76,12 +76,14 @@ export default function HabitCheckedForm() {
   async function handleStar(evt) {
     evt.preventDefault()
     const habitId = evt.target.value
+    console.log(evt.target.value)
 
     const formData = {
       habitId: habitId
     }
 
     await habitAPI.starHabit(formData)
+    getAll()
   }
 
   return (
@@ -91,7 +93,12 @@ export default function HabitCheckedForm() {
           <li  className='one-habit' key={habit._id} style={{ border: `2px solid ${habit.color}` }}>
               <div className='habit-left'>
                 <button className='delete' onClick={handleDelete} value={habit._id}>Delete</button>
-                <button onClick={handleStar} value={habit._id}>Star</button>
+                
+                  {habit.starred === true ? 
+                  <button onClick={handleStar} value={habit._id} className='star-t'>★</button>
+                  :
+                  <button onClick={handleStar} value={habit._id} className='star-f'>★</button>
+                  }
                 <h3 className='habit-name'>{habit.habit}</h3>
               </div>
               { !habit.completed_today || !habit.dates_completed.includes(new Date().toLocaleDateString('en-GB')) ? (
