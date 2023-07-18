@@ -2,6 +2,7 @@ import { useState } from "react";
 import { HexColorPicker } from "react-colorful";
 import * as habitAPI from '../../utilities/habit-api'
 import { useNavigate } from "react-router-dom";
+import './AddHabit.css'
 
 export default function AddHabit() {
 
@@ -36,13 +37,19 @@ export default function AddHabit() {
 
     setForm('')
     habitAPI.addHabit(formData)
-    navigate('/dashboard');
+    navigate('/');
   }
 
 
   return(
     <>
-      <h1>add Habit Page</h1>
+      <section className="add-habit-section">
+        <section className="heading">
+          <div className="a-h-info">
+            <h1 className="a-h-title">add A habit!</h1>
+            <p className="a-h-p">Keep track of something you want to improve at or just keep track of</p>
+          </div>
+        </section>
         <form onSubmit={handleSubmit}>
         <div class="field">
           <label class="label">Habit</label>
@@ -64,9 +71,10 @@ export default function AddHabit() {
           </div>
             <p class="help is-0xB64CE2">The Amount of Days You're Aiming For!</p>
         </div>
-        <HexColorPicker color={color} onChange={setColor} name="color" />
+        <HexColorPicker className='color-picker' color={color} onChange={setColor} name="color" />
         <button type="submit" class="button is-link is-light">Add</button>
       </form>
+      </section>
     </>
   )
 }

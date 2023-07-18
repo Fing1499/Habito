@@ -1,0 +1,71 @@
+#canvas-container {
+  height: 100vh;
+  width: 100vw;
+  background-image: url(../../assets/layered-waves-haikei.svg);
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+@media only screen and (min-width: 699px) {
+  #canvas-container {
+    background-image: url(../../assets/layered-waves-haikei-big.svg);
+  }
+}
+
+.homepage-header {
+  width: 100vw;
+  height: 10vh;
+  border-bottom: 1px solid white;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+.hp-left {
+  color: white;
+  margin-left: 3vw;
+  font-weight: bold;
+  font-size: 7vmin;
+}
+
+.hp-right {
+  width: 40vw;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-right: 3vw;
+}
+
+.lr {
+  color: white;
+  border: .5vmin solid white;
+  border-radius: 2vmin;
+  background-color: black;
+  height: 5vh;
+  width: 18vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+}
+
+.lr-form {
+  height: 30vh;
+  width: 90vw;
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: -30vh;
+  margin-top: 10vh;
+  padding: 0;
+}
+

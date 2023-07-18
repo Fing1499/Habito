@@ -7,6 +7,7 @@ import { faFaceAngry, faFaceFrown, faFaceMeh, faFaceSmile, faFaceGrinBeam } from
 export default function MoodChart() {
   const [moodData, setMoodData] = useState([]);
 
+
   function averageMood(moodData) {
     const amount = moodData.length
     let total = 0
@@ -66,15 +67,14 @@ export default function MoodChart() {
   };
 
   const renderMoodChart = (
-    <ResponsiveContainer width="100%" height={400}>
+    <ResponsiveContainer className='graph-container' width="90%" height={380}>
       <ScatterChart
         margin={{
           top: 20,
           right: 20,
-          bottom: 20,
-          left: 20,
-        }}
-      >
+          left: -20,
+          bottom: 0,
+        }} >
         <CartesianGrid />
         <XAxis dataKey="current_date" name="Date" stroke='#8884d8' />
         <YAxis dataKey="mood" name="Mood" domain={[1, 5]} tick={renderCustomAxisTick} stroke='#8884d8' />
@@ -86,10 +86,30 @@ export default function MoodChart() {
 
   return (
     <>
-      <h1>hello</h1>
+      <h1 className='graph-title'>Your Mood Chart</h1>
       {renderMoodChart}
-      <h1>Mood Avg.</h1>
-      <h3>{averageMood(moodData)}</h3>
+      <section className="mood-info">
+        <section className="avg-mood-section">
+          <h1 className='avg-mood'>Average Mood</h1>
+          <h3 className='mood-num'>
+            {averageMood(moodData) === 1 && (
+              <i class="fa-solid fa-face-angry" style={{color: "#ffffff"}}></i>
+            )}
+            {averageMood(moodData) === 2 && (
+              <i class="fa-solid fa-face-frown" style={{color: "#ffffff"}}></i>
+            )}
+            {averageMood(moodData) === 3 && (
+              <i class="fa-solid fa-face-meh" style={{color: "#ffffff"}}></i>
+            )}
+            {averageMood(moodData) === 4 && (
+              <i class="fa-solid fa-face-smile" style={{color: "#ffffff"}}></i>
+            )}
+            {averageMood(moodData) === 5 && (
+              <i class="fa-solid fa-face-grin-beam" style={{color: "#ffffff"}}></i>
+            )}
+          </h3>
+        </section>
+      </section>
     </>
   );
 }

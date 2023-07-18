@@ -8,26 +8,33 @@ export default function MainRadarChart({ chartData }) {
 
   function improvement(chartData) {
     return chartData.map((data) => (
-      <p key={data.habit}>{data.habit}: You have improved {data.multiplier.toFixed(2)}x</p>
+      <p key={data.habit}><strong>{data.habit}</strong>: You have improved {data.multiplier.toFixed(2)}x</p>
     ))
   }
 
   const renderRadarChart = (
-    <ResponsiveContainer width="100%" height={300}>
-      <RadarChart cx="50%" cy="50%" outerRadius="80%" data={data}>
+    <ResponsiveContainer className='graph-container' width="90%" height={380}>
+      <RadarChart cx="50%" cy="50%" outerRadius="80%" data={data} 
+        margin={{
+          top: 40,
+          right: 20,
+          left: -20,
+          bottom: 0,
+        }} >
         <PolarGrid />
         <PolarAngleAxis dataKey="habit" />
         <PolarRadiusAxis />
-        <Radar dataKey="multiplier" stroke="#8884d8" fill="#8884d8" fillOpacity={0.6} />
+        <Radar dataKey="multiplier" stroke='#7E27E3' fill="#8884d8" fillOpacity={0.6} />
       </RadarChart>
     </ResponsiveContainer>
   )
 
   return(
     <>
+      <h1 className="graph-title">Your Improvement</h1>
       {renderRadarChart}
-      <section>
-        <h1>Your Improvement!</h1>
+      <section className='radar-info-section'>
+        <h1 className='radar-values'>Values</h1>
         {improvement(chartData)}
       </section>
     </>

@@ -1,0 +1,171 @@
+.details-heading-section {
+  background: linear-gradient(0deg, #7E27E3 35%, #B700FF 94%);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2.5vh;
+  height: 25%;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 93vh;
+}
+
+.details-heading {
+  font-size: 8vmin;
+  font-weight: bold;
+}
+
+.chart-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  height: 40%;
+  gap: 1vmin;
+}
+
+.chart-button, .habit-buttons {
+  font-weight: bold;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 4.5vh;
+  width: 20vw;
+  border: none;
+  border-radius: 4vmin;
+  background: conic-gradient(from 358deg at 50% 50%, #A100FFFF 1%, #71C4FFFF 27%, #71C4FFFF 50%, #71C4FFFF 57%, #A100FFFF 99%);
+  border: .6vmin solid white;
+}
+
+.graph-title {
+  font-size: 6vmin;
+  font-weight: bold;
+}
+
+.graph-container {
+  border-radius: 4vmin;
+  margin-top: 1vh;
+  box-shadow: 0px 0px 4px 1px #7E27E3;
+}
+
+.area-info-section {
+  border: 1px solid rgb(255, 255, 255);
+  border-radius: 3vmin;
+  box-shadow: 0px 2px 7px 0px #7E27E3;
+  margin-top: 3vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 65%;
+  height: 15%;
+  color: white;
+  background-color: #7E27E3;
+  overflow-y: auto;
+}
+
+.pie-key {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  border-radius: 3vmin;
+  width: 90%;
+  height: 15vh;
+  margin-top: 2.5vh;
+  padding: 2vmin;
+  box-shadow: 0px 0px 4px 1px #7E27E3;
+}
+
+.one-key-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.key-title {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.key-color {
+  height: 2vh;
+  width: 4vw;
+  margin-right: 1vmin;
+}
+
+.mood-info {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+}
+
+.avg-mood-section, .common-mood-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 3vmin;
+  background-color: #7E27E3;
+  color: white;
+  margin-top: 4.5vh;
+  height: 10vh;
+  width: 40vw;
+}
+
+.avg-mood {
+  font-weight: bold;
+}
+
+.mood-num {
+  font-size: 6vmin;
+  font-weight: bold;
+}
+
+.title-buttons-section {
+  width: 90%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  overflow-x: auto;
+  height: 5vh;
+  margin-bottom: 2vh;
+}
+
+.habit-buttons {
+  border: 0.6vmin solid #B700FF;
+}
+
+.radar-info-section {
+  border: 1px solid rgb(255, 255, 255);
+  border-radius: 3vmin;
+  box-shadow: 0px 2px 7px 0px #7E27E3;
+  margin-top: 3vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 80%;
+  height: 15%;
+  color: white;
+  background-color: #7E27E3;
+  overflow-y: auto;
+}
+
+.radar-values {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+strong {
+  color: white;
+}

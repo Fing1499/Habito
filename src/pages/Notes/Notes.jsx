@@ -11,14 +11,17 @@ export default function Notes() {
 
 
   useEffect(function() {
-    async function getNotes() {
-      const sendReq = await notesAPI.getAll();
-      const notes = sendReq.map((note, idx) =>  <Link to={`/notes/${note._id}`}><NotesListItem note={note} key={idx} /></Link>)
-      console.log(notes);
-      setNotes(notes);
-    }
+
     getNotes();
   }, [])
+
+  async function getNotes() {
+    console.log('get notes')
+    const sendReq = await notesAPI.getAll();
+    const notes = sendReq.map((note, idx) =>  <Link to={`/notes/${note._id}`}><NotesListItem note={note} key={idx} /></Link>)
+    console.log(notes);
+    setNotes(notes);
+  }
 
   
   return(

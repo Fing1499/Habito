@@ -76,3 +76,52 @@
   padding-left: 2vmin;
   padding-right: 2vmin;
 }
+
+.note-add-heading-text {
+  font-size: 8vmin;
+  font-weight: bold;
+  margin-top: 2vmin;
+  font-family: 'Mukta', sans-serif;
+}
+
+.add-note-date {
+  margin-top: 5vmin;
+}
+
+.add-note-form {
+  width: 90%;
+  height: 70%;
+  margin-top: 2vmin;
+}
+
+.note-textarea {
+  width: 90%;
+}
+
+.one-note-title {
+  font-family: 'Mukta', sans-serif;
+  font-size: 8vmin;
+  margin-top: 5vh;
+}
+
+.one-note-content {
+  height: 68%;
+  width: 100%;
+  display: flex;
+  margin: 0 auto;
+  overflow-y: auto;
+  background-color: #f5f5f5;
+  border-bottom: 1px dotted #ccc;
+}
+
+.one-note-p {
+  border-bottom: 1px dotted #ccc;
+}
+
+.ta {
+  height: 70%;
+}
+
+.textarea {
+  height: 100%;
+}

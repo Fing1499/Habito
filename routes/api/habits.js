@@ -17,4 +17,6 @@ router.get('/get-area-chart-data', habitsCtrl.getAreaChartData);
 
 router.post('/send-chart-data', habitsCtrl.addChartData);
 
+router.post('/star-habit', habitsCtrl.starHabit);
+
 module.exports = router;

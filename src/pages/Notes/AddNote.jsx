@@ -39,16 +39,19 @@ export default function AddNote() {
     <>
     <main className="notes">
       <section className="heading">
-      <h1>Add a Note or Journal Entry For Today</h1>
+      <h1 className='note-add-heading-text'>Add a Note or Journal Entry For Today</h1>
       <section className="add-note-date">
         <h3 className="date">{new Date().toLocaleString('en-GB').split(',')[0]}</h3>
       </section>
       </section>
-      <form onSubmit={handleSubmit}>
-        <input class="input is-link" type="text" placeholder="Title" name="title" onChange={handleChange}></input>
+      <form className="add-note-form" onSubmit={handleSubmit}>
+        <input className="input is-link" type="text" placeholder="Title" name="title" onChange={handleChange}></input>
         <br/>
         <br/>
-        <textarea class="textarea is-link" placeholder="Start writing..." name="content" onChange={handleChange}></textarea>
+        <section className="ta">
+        <textarea className="textarea is-link" placeholder="Start writing..." name="content" onChange={handleChange}></textarea>
+        </section>
+        <br/>
         <button type="submit" class="button is-link is-light">Add</button>
       </form>
       </main>

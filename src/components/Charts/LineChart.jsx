@@ -14,7 +14,7 @@ export default function MainLineChart({ chartData }) {
 
   function displayButtons(chartData) {
     return chartData.map((data, idx) => (
-      <button onClick={() => handleChange(idx)} key={`${idx}-${data.habit}`} value={idx}>
+      <button className='habit-buttons' onClick={() => handleChange(idx)} key={`${idx}-${data.habit}`} value={idx}>
         {data.habit}
       </button>
     ));
@@ -29,8 +29,10 @@ export default function MainLineChart({ chartData }) {
 
   return (
     <>
-      <h1>Your Progress</h1>
-      {displayButtons(chartData)}
+      <h1 className='graph-title'>Your Progress</h1>
+      <section className="title-buttons-section">
+        {displayButtons(chartData)}
+      </section>
       <SpecificHabitLineChart chartData={selectedGraph} />
     </>
   );

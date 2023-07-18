@@ -35,3 +35,7 @@ export async function deleteHabit(formData) {
 export async function getAreaChartData() {
   return sendRequest(`${BASE_URL}/get-area-chart-data`)
 }
+
+export async function starHabit(formData) {
+  return sendRequest(`${BASE_URL}/star-habit`, 'POST', formData)
+}

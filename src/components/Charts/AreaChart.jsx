@@ -1,4 +1,4 @@
-import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import { AreaChart, Area, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
 import { useState, useEffect } from 'react';
 import * as habitAPI from '../../utilities/habit-api'
 
@@ -26,32 +26,31 @@ export default function MainAreaChart() {
   const data = areaChartData
 
   const renderAreaChart = (
-    <ResponsiveContainer width="100%" height={300}>
+    <ResponsiveContainer className='graph-container' width="90%" height={380}>
     <AreaChart
       width={500}
       height={400}
       data={data}
       margin={{
-        top: 10,
-        right: 30,
-        left: 0,
+        top: 30,
+        right: 20,
+        left: -20,
         bottom: 0,
       }}
     >
-      <CartesianGrid strokeDasharray="3 3" />
-      <XAxis dataKey="date" name="Date"/>
-      <YAxis />
+      <XAxis dataKey="date" name="Date" stroke='#7E27E3'/>
+      <YAxis stroke='#7E27E3' />
       <Tooltip />
-      <Area type="monotone" dataKey="habits_completed" name="Habits Completed" stroke="#8884d8" fill="#8884d8" />
+      <Area type="monotone" dataKey="habits_completed" name="Habits Completed" stroke="#7E27E3" fill="#873adf91" />
     </AreaChart>
   </ResponsiveContainer>
   )
 
   return (
     <>
-    <h1>hello</h1>
+    <h1 className='graph-title'>Your Daily Completion</h1>
       {renderAreaChart}
-      <section>
+      <section className='area-info-section'>
         <h1>You Have Completed</h1>
         <h1>{totalHabits(areaChartData)}</h1>
         <h1>Habits Over</h1>

@@ -117,3 +117,23 @@ export default function HabitListItem({ habit }) {
       <YAxis />
     </LineChart>
   );
+
+
+  ----------- three js
+
+        // const font = await new Promise((resolve, reject) => {
+      //   const loader = new FontLoader();
+      //   loader.load('../../assets/fonts/Mukta-ExtraBold_Regular.json', resolve, undefined, reject);
+      // });
+
+      // const geometry = new TextGeometry( 'H', {
+      //   font: font,
+      //   size: 80,
+      //   height: 5,
+      //   curveSegments: 12,
+      //   bevelEnabled: true,
+      //   bevelThickness: 10,
+      //   bevelSize: 8,
+      //   bevelOffset: 0,
+      //   bevelSegments: 5
+      // });

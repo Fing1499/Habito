@@ -11,7 +11,22 @@ module.exports = {
   getChartData,
   deleteHabit,
   addChartData,
-  getAreaChartData
+  getAreaChartData,
+  starHabit
+}
+
+async function starHabit(req, res) {
+  try {
+    const user = await User.findById(req.user._id)
+    const habitId = req.body.habitId
+    const habitToStar = user.habit.find(habit => habit._id.equals(habitId))
+    habitToStar.starred = !habitToStar.starred
+    await user.save()
+    res.json('habit star value changed')
+    console.log(habitToStar)
+  } catch (err) {
+    console.log(err)
+  }
 }
 
 async function getAreaChartData(req, res) {
@@ -64,7 +79,7 @@ async function deleteHabit(req, res) {
   const index = user.habit.indexOf(habitToDelete)
   user.habit.splice(index, 1)
   await user.save();
-  res.json()
+  res.json('deleted')
 }
 
 async function getChartData(req, res) {
@@ -88,14 +103,11 @@ async function completeHabit(req, res) {
     // console.log('REQ.BODY:', req.body.habit.dates_completed)
     habit.completed_today = req.body.habit.completed_today
 
-
-
     if (await req.body.habit.completed_today === true) {
       await habit.dates_completed.push(req.body.habit.dates_completed)
       habit.multiplier = habit.multiplier + (habit.multiplier * 0.01)
       habit.amount_completed += 1
       await habit.multiplier_day_by_day.push(habit.multiplier);
-
 
     } else {
       await habit.dates_completed.pop(req.body.habit.dates_completed)
@@ -122,7 +134,7 @@ async function addHabit(req, res) {
     user.habit.push(newHabit)
     await user.save()
     console.log(newHabit);
-    res.end()
+    res.json('added-habit')
   } catch(err) {
     console.log(err);
   }

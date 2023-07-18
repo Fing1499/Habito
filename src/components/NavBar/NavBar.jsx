@@ -14,7 +14,7 @@ export default function NavBar({ user, setUser }) {
   return (
     <>
       <nav>
-        <Link to="/dashboard"><i class="fa-solid fa-grip fa-2xl"></i></Link>
+        <Link to="/"><i class="fa-solid fa-grip fa-2xl"></i></Link>
 
         <Link to="/details"><i class="fa-solid fa-chart-line fa-2xl"></i></Link>
 
